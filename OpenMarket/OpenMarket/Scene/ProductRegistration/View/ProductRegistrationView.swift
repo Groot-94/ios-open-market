@@ -6,12 +6,21 @@
 //
 
 import UIKit
+import PhotosUI.PHPicker
 
 class ProductRegistrationView: UIView {
     // MARK: - properties
     
-    private let pickerController = UIImagePickerController()
     var delegate: ImagePickerDelegate?
+    
+    private let pickerController: PHPickerViewController = {
+         var configuration = PHPickerConfiguration()
+         configuration.selectionLimit = 5
+         configuration.filter = .images
+         
+         let controller = PHPickerViewController(configuration: configuration)
+         return controller
+     }()
     
     private let totalStackView: UIStackView = {
         let stackView = UIStackView()
@@ -388,21 +397,25 @@ class ProductRegistrationView: UIView {
 
 // MARK: - extensions
 
-extension ProductRegistrationView: UIImagePickerControllerDelegate,
-                                   UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController,
-                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
-        else { return }
+extension ProductRegistrationView: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true,completion: nil)
         
-        let imageView = setupPickerImageView(image: editedImage)
-        imageStackView.insertArrangedSubview(imageView,
-                                             at: .zero)
-        pickerController.dismiss(animated: true,
-                                 completion: nil)
+        results.forEach { self.insertImages($0.itemProvider) }
     }
     
-    private func setupPickerImageView(image: UIImage) -> UIImageView {
+    private func insertImages(_ itemProvider: NSItemProvider) {
+        guard itemProvider.canLoadObject(ofClass: UIImage.self) else { return }
+        
+        itemProvider.loadObject(ofClass: UIImage.self) { image, error in
+            DispatchQueue.main.sync {
+                guard let image = image as? UIImage else { return }
+                let imageView = self.setupPickerImageView(image: image)
+                self.imageStackView.insertArrangedSubview(imageView, at: .zero)
+            }
+        }
+    }
+    private func setupPickerImageView(image: UIImage?) -> UIImageView {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = image
@@ -414,10 +427,6 @@ extension ProductRegistrationView: UIImagePickerControllerDelegate,
             ])
         
         return imageView
-    }
-    
-    @objc private func endEditing(){
-        resignFirstResponder()
     }
 }
 
@@ -458,7 +467,7 @@ extension ProductRegistrationView: UITextFieldDelegate {
 // MARK: - ImagePickerDelegate
 
 protocol ImagePickerDelegate {
-    func pickImages(pikerController: UIImagePickerController)
+    func pickImages(pikerController: PHPickerViewController)
 }
 
 // MARK: - Design

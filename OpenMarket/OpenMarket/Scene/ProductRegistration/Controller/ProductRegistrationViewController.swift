@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PhotosUI.PHPicker
 
 class ProductRegistrationViewController: UIViewController {
     // MARK: - properties
@@ -50,12 +51,7 @@ class ProductRegistrationViewController: UIViewController {
 }
 
 extension ProductRegistrationViewController: ImagePickerDelegate {
-    func pickImages(pikerController: UIImagePickerController) {
-        guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else { return }
-        
-        pikerController.sourceType = .photoLibrary
-        pikerController.allowsEditing = true
-        
+    func pickImages(pikerController: PHPickerViewController) {
         present(pikerController, animated: true, completion: nil)
     }
 }
