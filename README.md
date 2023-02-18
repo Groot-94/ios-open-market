@@ -72,7 +72,7 @@
     
 </details>
 
-## [TroubleShooting]
+## TroubleShooting
 
 <details>
 <summary>내용보기</summary>
