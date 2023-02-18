@@ -13,9 +13,6 @@
 - [구현화면](#구현내용)
 - [키워드](#키워드)
 - [TroubleShooting](#TroubleShooting)
-- [1️⃣ Step1](#1️⃣-Step1_Wiki)
-- [2️⃣ Step2](#2️⃣-Step2_Wiki)
-- [3️⃣ Step3](#3️⃣-Step3_Wiki)
 - [프로젝트 후기](#프로젝트_후기)
 - [참고문서](#참고문서)
 ## 개발자 소개
@@ -28,6 +25,7 @@
 ## 프로젝트 소개
 -  URL Session을 활용한 서버와의 통신을 통해 전달받은 JSON 데이터와 매핑할 모델을 활용
 -  Modern CollectionView를 이용해 List, Grid 방식으로 마켓의 물품을 표시하도록 구현
+-  기존 프로젝트 리팩토링.
 
 ## UML
 ### [ClassDiagram]
@@ -204,9 +202,6 @@ DispatchQueue.main.async {
     ```
 </details>
     
-## [1️⃣ Step1_Wiki](https://github.com/bar-d/ios-open-market/wiki/Step1)
-## [2️⃣ Step2_Wiki](https://github.com/bar-d/ios-open-market/wiki/Step2)
-## [3️⃣ Step3_Wiki](https://github.com/bar-d/ios-open-market/wiki/Step3)
 ## 프로젝트_후기
 컬렉션뷰와 네트워크 구현이 처음이라 힘들었지만, 팀원과 삽질?을 굉장히 오래 하면서 코드를 만들어가는 재미가 있었습니다.
 마감 일자를 지키지 못해 리뷰를 받지는 못했지만, 방학기간에도 진행하고 리드미를 작성하면서 끝까지 함께해주는 좋은 팀원과 함께해서 다행이라는 생각을 하게 되었습니다.
