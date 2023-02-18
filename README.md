@@ -1,35 +1,32 @@
-# 오픈 마켓 README.md
-
-## 프로젝트 저장소
-> 프로젝트 기간: 2022-07-11 ~ 2022-08-05</br>
-> 팀원: [바드](https://github.com/bar-d), [그루트](https://github.com/Groot-94)</br>
-리뷰어: [@Charlie](https://github.com/kcharliek)</br>
-그라운드롤: [GroundRule - Wiki](https://github.com/bar-d/ios-open-market/wiki/Ground-Rules)
-
+# OpenMarket
 ## 📑 목차
-- [개발자 소개](#개발자-소개)
-- [프로젝트 소개](#프로젝트-소개)
-- [UML](#UML)
-- [구현화면](#구현내용)
-- [키워드](#키워드)
-- [TroubleShooting](#TroubleShooting)
+- [소개](#소개)
+- [구현화면](#구현화면)
+- [트러블 슈팅](#TroubleShooting)
 - [프로젝트 후기](#프로젝트_후기)
 - [참고문서](#참고문서)
-## 개발자 소개
+## 🌱 소개
+### 💻 개발환경 및 라이브러리
+
+[![swift](https://img.shields.io/badge/swift-5.0-orange)]()
+[![xcode](https://img.shields.io/badge/Xcode-14.0-blue)]()
+[![iOS](https://img.shields.io/badge/iOS-14.0-green)]()
+### 📄 프로젝트 내용
+- 사용자의 물품을 등록 및 수정할 수 있는 마켓앱
+- Modern CollectionView를 이용해 List, Grid 방식으로 마켓의 물품을 표시하도록 구현했습니다.
+- REST_API를 사용하기 위해 URL Session을 활용하여 네트워크를 추상화 했습니다.
+### 프로젝트 기간
+<2022-07-11 ~ 2022-08-05>
+### 🧑 팀원
 |바드|그루트|
 |:---:|:---:|
 | <img src = "https://i.imgur.com/k9hX1UH.png" width="250" height="250">| <img src = "https://i.imgur.com/onBeySC.jpg" width="250" height="250"> |
 |[바드](https://github.com/bar-d)|[그루트](https://github.com/Groot-94)|
 
-
-## 프로젝트 소개
--  URL Session을 활용한 서버와의 통신을 통해 전달받은 JSON 데이터와 매핑할 모델을 활용
--  Modern CollectionView를 이용해 List, Grid 방식으로 마켓의 물품을 표시하도록 구현
-
-## UML
-### [ClassDiagram]
+### UML
+#### [ClassDiagram]
 ![](https://i.imgur.com/Uqx3FVq.jpg)
-## 구현화면
+## 📱 실행 화면
 ||||
 |:---:|:---:|:---:|
 |레이아웃 변경 화면|화면 스크롤|리스트 화면 새로고침|
@@ -62,19 +59,20 @@
 - UIImagePickerController
 - UITextView
 - UITextViewDelegate
-- Keyboard
 - UIAlertController
 - multipart-form/data
 - UICollectionView Pagination
-    
+
 </details>
 
 ## TroubleShooting
 
 <details>
-<summary>내용보기</summary>
+    
+**<summary>1. Network에서 data를 받아오는 Unit Test를 하면서 테스트가 제대로 되지 않는 문제.**
+        
+</summary>
 
-### 1. Network에서 data를 받아오는 Unit Test를 하면서 테스트가 제대로 되지 않는 문제
 - 네트워크는 서버에서 언제 응답이 올지 모르기 때문에 dataTask의 completionHandler는 비동기 실행입니다.
 - `XCTAssertEqual`이 실행되는 시점보다 completionHandler의 비동기 실행이 느려서 테스트가 실패하는 문제가 있었습니다.
 - 해결하기 위해서 Asynchronous Tests and Expectations 공식문서를 참고했습니다.
@@ -109,28 +107,56 @@ func test_APIRequest를_받아와서_디코딩이_잘되는지() {
 ```
 [Asynchronous Tests and Expectations](https://developer.apple.com/documentation/xctest/asynchronous_tests_and_expectations)
 
-### 2. UICollectionView layout 초기화
+</details> 
+
+<details>
+    
+**<summary>2. UICollectionView layout 초기화문제.**
+        
+</summary>
+    
  - 처음 UICollectionView 인스턴스를 생성해 주었더니 다음과 같은 오류가 났습니다.
 ```
   UICollectionView must be initialized with a non-nil layout parameter
 ```
 - 오류에서 알 수 있듯이 `layout` 파라미터를 nil로 해주어서 생긴 오류였고, layout을 초기화시켜 주어 해결했습니다.
 
-### 3. lazy var
+</details> 
+
+<details>
+    
+**<summary>3. lazy var**
+
+</summary>
+
 - `listConfiguration`을 인스턴스로 만들고, `listLayout` 내부의 프로퍼티로 사용하려고 하니 다음과 같은 오류가 발생했습니다.
 ```
     Cannot use instance member 'listConfiguration' within property initializer; property initializers run before 'self' is available
 ```
 - 인스턴스가 생성되기전 내부 프로퍼티의 파라미터로 사용하려고 하여 다음과 같은 오류 발생했다고 생각이 들었고, lazy var를 사용하여 초기화 시점을 동일하게 만들어서 해결했습니다.
 
-### 4. hashable 채택
+</details> 
+    
+<details>
+    
+**<summary>4. hashable 채택**
+        
+</summary>
+
 - Collection View에서 데이터를 불러왔는데 같은 값을 가지고 있다고 앱 크래쉬가 발생했습니다.
 - 데이터를 불러오는 구조체인 `ProductDetail`에 `Hashable`을 채택하는 방법으로 해결했습니다.
 - Hashable이란?
     - 정수 Hash 값을 제공하는 타입입니다.
     - 그 값 자체로 유일하게 표현이 가능한 방법을 제공합니다.
 
-### 5. Ambigious UILabel height in autoresizing UITableViewCell 경고창
+</details> 
+
+<details>
+    
+**<summary>5. Ambigious UILabel height in autoresizing UITableViewCell 경고창**
+
+</summary>
+
 - StackView에 Label을 순서대로 넣은 상태에서 label들의 text만 정해주면 따로 label들의 constraints 설정없이 레이아웃이 정렬된다고 생각했습니다.
 - 하지만, 그림과 같은 경고창을 보여줬습니다.
     <img src = "https://i.imgur.com/Tm4zsMo.png" width="500" height="400">
@@ -142,7 +168,14 @@ func test_APIRequest를_받아와서_디코딩이_잘되는지() {
 
 [UIStackView.Distribution.equalCentering - 공식문서](https://developer.apple.com/documentation/uikit/uistackview/distribution/equalcentering)
 
-### 6. UIView with rounded corners and drop shadow / Modern Collection View's grid layout 사용 시 cell에 테두리가 자동으로 설정된다고 생각했으나, 테두리가 나타나지 않음.
+</details> 
+    
+<details>
+    
+**<summary>6. UIView with rounded corners and drop shadow / Modern Collection View's grid layout 사용 시 cell에 테두리가 자동으로 설정된다고 생각했으나, 테두리가 나타나지 않음.**
+
+</summary>
+
 - grid view를 구현하면서 cell의 테두리가 나타나지 않아서 Modern Collection View's grid에 대해 찾아봤지만 테두리에 대한 내용을 찾지 못했습니다.
 - cell의 draw 함수를 override 해서 layout 프로퍼티를 이용해 테두리를 구현하였습니다.
 
@@ -176,7 +209,15 @@ DispatchQueue.main.async {
                 }
 ```
 - configureSnapshot을 main thread에서 실행하는 방법으로 해결했습니다.
-### 7. 이미지의 크기를 줄이는 방법을 고민했습니다.
+
+</details> 
+    
+<details>
+    
+**<summary>7. 이미지의 크기를 줄이는 방법을 고민했습니다.**
+
+</summary> 
+
 - 이미지의 크기(byte)를 줄이기 위해서 방법을 검색을 했지만, byte를 줄이는 방법보다는 사이즈를 줄이는 방법만 확인 할 수 있었습니다. 
 - 여러가지 시도 중 사이즈를 조금씩 줄이면 byte의 크기가 줄어듬을 알 수 있었고, 재귀함수를 사용해서 이미지의 크기가 300 byte를 넘으면 조금씩 줄이는 방식으로 이미지의 크기를 줄였습니다.
     ```swift
@@ -199,8 +240,9 @@ DispatchQueue.main.async {
             return renderImage
         }
     ```
+
 </details>
-    
+
 ## 프로젝트_후기
 컬렉션뷰와 네트워크 구현이 처음이라 힘들었지만, 팀원과 삽질?을 굉장히 오래 하면서 코드를 만들어가는 재미가 있었습니다.
 마감 일자를 지키지 못해 리뷰를 받지는 못했지만, 방학기간에도 진행하고 리드미를 작성하면서 끝까지 함께해주는 좋은 팀원과 함께해서 다행이라는 생각을 하게 되었습니다.
