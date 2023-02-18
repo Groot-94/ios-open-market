@@ -1,23 +1,24 @@
 # OpenMarket
-## 📑 목차
-- [소개](#-소개)
-- [실행 화면](#-실행-화면)
-- [트러블 슈팅](#-트러블슈팅)
+## 목차
+- [소개](#소개)
+- [실행 화면](#실행-화면)
+- [키워드](#키워드)
+- [트러블 슈팅](#트러블_슈팅)
 - [프로젝트 후기](#프로젝트_후기)
 - [참고문서](#참고문서)
-## 🌱 소개
-### 💻 개발환경 및 라이브러리
+## 소개
+### 개발환경 및 라이브러리
 
 [![swift](https://img.shields.io/badge/swift-5.0-orange)]()
 [![xcode](https://img.shields.io/badge/Xcode-14.0-blue)]()
 [![iOS](https://img.shields.io/badge/iOS-14.0-green)]()
-### 📄 프로젝트 내용
+### 프로젝트 내용
 - 사용자의 물품을 등록 및 수정할 수 있는 마켓앱
 - Modern CollectionView를 이용해 List, Grid 방식으로 마켓의 물품을 표시하도록 구현했습니다.
 - REST_API를 사용하기 위해 URL Session을 활용하여 네트워크를 추상화 했습니다.
 ### 프로젝트 기간
 <2022-07-11 ~ 2022-08-05>
-### 🧑 팀원
+### 팀원
 |바드|그루트|
 |:---:|:---:|
 | <img src = "https://i.imgur.com/k9hX1UH.png" width="250" height="250">| <img src = "https://i.imgur.com/onBeySC.jpg" width="250" height="250"> |
@@ -26,7 +27,7 @@
 ### UML
 #### [ClassDiagram]
 ![](https://i.imgur.com/Uqx3FVq.jpg)
-## 📱 실행 화면
+## 실행 화면
 ||||
 |:---:|:---:|:---:|
 |레이아웃 변경 화면|화면 스크롤|리스트 화면 새로고침|
@@ -37,6 +38,7 @@
 | <img src = "https://i.imgur.com/GJhqacZ.gif" width="300" height="600">| <img src = "https://i.imgur.com/UqO0PZa.gif" width="300" height="600"> |<img src = "https://i.imgur.com/5U1bgBG.gif" width="300" height="600">|
 |상품 수정 구현|상품삭제 비밀번호 틀렸을 때|수정할 때 형식 못맞췃을때|
 |<img src = "https://i.imgur.com/OJpYfei.gif" width="300" height="600">|<img src = "https://i.imgur.com/WLYIcMC.gif" width="300" height="600">|<img src = "https://i.imgur.com/iLY8who.gif" width="300" height="600">|
+
 ## 키워드
 
 <details>
@@ -243,7 +245,7 @@ DispatchQueue.main.async {
 
 </details>
 
-## 프로젝트_후기
+## 프로젝트 후기
 컬렉션뷰와 네트워크 구현이 처음이라 힘들었지만, 팀원과 삽질?을 굉장히 오래 하면서 코드를 만들어가는 재미가 있었습니다.
 마감 일자를 지키지 못해 리뷰를 받지는 못했지만, 방학기간에도 진행하고 리드미를 작성하면서 끝까지 함께해주는 좋은 팀원과 함께해서 다행이라는 생각을 하게 되었습니다.
 ### 프로젝트를 진행하면서 느낀 필요성 몇 가지
