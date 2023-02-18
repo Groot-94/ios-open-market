@@ -25,7 +25,6 @@
 ## 프로젝트 소개
 -  URL Session을 활용한 서버와의 통신을 통해 전달받은 JSON 데이터와 매핑할 모델을 활용
 -  Modern CollectionView를 이용해 List, Grid 방식으로 마켓의 물품을 표시하도록 구현
--  기존 프로젝트 리팩토링.
 
 ## UML
 ### [ClassDiagram]
