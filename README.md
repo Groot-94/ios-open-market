@@ -1,8 +1,8 @@
 # OpenMarket
 ## 📑 목차
-- [소개](#소개)
-- [구현화면](#구현화면)
-- [트러블 슈팅](#TroubleShooting)
+- [소개](#-소개)
+- [실행 화면](#-실행-화면)
+- [트러블 슈팅](#-트러블슈팅)
 - [프로젝트 후기](#프로젝트_후기)
 - [참고문서](#참고문서)
 ## 🌱 소개
@@ -261,3 +261,5 @@ DispatchQueue.main.async {
     - [Implementing Modern Collection Views](https://developer.apple.com/documentation/uikit/views_and_controls/collection_views/implementing_modern_collection_views)
 - [Data Entry - iOS - Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/patterns/entering-data/)
 - [UIAlertController](https://developer.apple.com/documentation/uikit/uialertcontroller)
+    
+[🔝 맨 위로 이동하기](#-OpenMarket)
